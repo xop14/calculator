@@ -243,6 +243,12 @@ keys.addEventListener("click", (e) => {
         showInput();
         console.log("%");
     }
+    else if (value == "±") {
+        input = input * -1;
+        temp = input.toString();
+        showInput();
+        console.log("±");
+    }
     else if (value == "AC") {
         clear();
     }
