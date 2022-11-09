@@ -2,6 +2,7 @@
 const lcdTop = document.querySelector("#lcd-top");
 const lcdBottom = document.querySelector("#lcd-bottom");
 const keys = document.querySelector("#keys");
+const MAXLENGTH = 17;
 
 
 console.log();
@@ -27,6 +28,7 @@ showInput();
 function inputNumber(s) {
     // prevent multiple dots
     if ([...temp].includes(".") && s == ".") return;
+    if ([...temp].length >= 10) return;
     // reset temp
     //if (input == 0) {temp = "0"}
     if (temp === "0" && s == ".") {
@@ -50,12 +52,32 @@ function showFormula(current, symbol) {
 }
 
 function showInput() {
+    lcdBottom.style.fontSize = "48px";
     lcdBottom.textContent = temp;
 }
 
 function showResults() {
+    lcdBottom.style.fontSize = "48px";
+    // Adjust max number of decimal places to fit screen
+    const leftLength = result.toString().split(".")[0].length;
+    let decimalPlaces = MAXLENGTH - leftLength - 1;
+    decimalPlaces = decimalPlaces < 2 ? 2 : decimalPlaces;
+
     // toFixed limits decimal places, parseFloat gets rid of trailing zeros
-    lcdBottom.textContent = parseFloat(result.toFixed(6));
+    const formattedResult = parseFloat(result.toFixed(decimalPlaces));
+    
+    if (formattedResult.toString().length > 17) {
+        lcdBottom.style.fontSize = "28px";
+        lcdBottom.textContent = "Number too large!";
+    } 
+    else if (formattedResult.toString().length > 10) {
+        lcdBottom.style.fontSize = "28px";
+        lcdBottom.textContent = formattedResult;
+    }
+    else {
+        lcdBottom.style.fontSize = "48px";
+        lcdBottom.textContent = formattedResult;
+    }
 }
 
 // clear
@@ -116,10 +138,6 @@ function updateNumbers() {
     numB = null;
     input = 0;
     temp = "0";
-}
-
-function equals() {
-    operate(activeOperator, currentNum, false);
 }
 
 
@@ -214,16 +232,26 @@ keys.addEventListener("click", (e) => {
     else if (value == "=") {
         operate(value, false);
     }
+    else if (value == "%") {
+        if (input < 0.00001) {
+            lcdBottom.style.fontSize = "28px";
+            lcdBottom.textContent = "Number too small";
+            return;
+        }
+        input = input / 100;
+        temp = input.toString();
+        showInput();
+        console.log("%");
+    }
     else if (value == "AC") {
         clear();
     }
-    console.log({temp});
-    console.log(typeof temp);
-    console.log({input});
-    console.log({numA});
-    console.log({numB});
-    console.log({result});
-    console.log({activeOperator});
+    // console.log({temp});
+    // console.log({input});
+    // console.log({numA});
+    // console.log({numB});
+    // console.log({result});
+    // console.log({activeOperator});
 
 });
 
