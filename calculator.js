@@ -7,28 +7,40 @@ const keys = document.querySelector("#keys");
 console.log();
 
 let temp;
-let currentNum;
-let lastNum;
+let input;
+let result;
+let numA;
+let numB;
 let activeOperator;
 let lastOperator;
 
 // reset all variables to default
 clear();
-updateScreen(currentNum);
-
+showInput();
 
 // test area
-operate("multiply", 5, 6);
+
 
 
 
 // input
 function inputNumber(s) {
-    temp += s;
-    console.log(temp);
+    // prevent multiple dots
+    if ([...temp].includes(".") && s == ".") return;
+    // reset temp
+    //if (input == 0) {temp = "0"}
+    if (temp === "0" && s == ".") {
+        temp = "0.";
+    }
+    else if (temp === "0") {
+        temp = s;
+    }
+    else {
+        temp += s;
+    }
     // percentage go here?
     // +/- go here?
-    currentNum = parseFloat(temp);
+    input = parseFloat(temp);
 }
 
 // display
@@ -37,67 +49,73 @@ function showFormula(current, symbol) {
     return `${current} ${symbol}`;
 }
 
-function updateScreen() {
-    if (currentNum == null) {
-        //update screen with "0"
-    } else {
-        //update screen div with current number
-    }
+function showInput() {
+    lcdBottom.textContent = temp;
+}
+
+function showResults() {
+    // toFixed limits decimal places, parseFloat gets rid of trailing zeros
+    lcdBottom.textContent = parseFloat(result.toFixed(6));
 }
 
 // clear
 function clear() {
-    temp = "";
-    currentNum = null;
-    lastNum = null;
+    temp = "0";
+    input = 0;
+    result = 0;
+    numA = 0;
+    numB = null;
     activeOperator = "";
-    lastOperator = "";
+    lastOperator = ""; 
+    showInput();
 }
 
 // logic
-function operate(operator, current = null, updateOperator = true) {
-    if (lastNum == null && current == null) {
-        return;
-    } 
-    else if (lastNum == null) {
-        lastNum = current;
-        currentNum = null;
+function operate(operator, updateOperator = true) {
+    
+    if (numA == 0) {
+        numA = input;
+        input = 0;
+        temp = "0";
         activeOperator = operator;
         return;
-    } else {
+    }
+    else {
+        numB = input;
         if (activeOperator == "+") {
-            currentNum = add(lastNum, current, updateOperator);
-            wrapUpOperation(operator);
-            return;
+            result = add(numA, numB);
+            showResults();
+            updateNumbers();
         }
         if (activeOperator == "-") {
-            currentNum = subtract(lastNum, current, updateOperator);
-            wrapUpOperation(operator);
-            return;
+            result = subtract(numA, numB);
+            showResults();
+            updateNumbers();
         }
         if (activeOperator == "x") {
-            currentNum = multiply(lastNum, current, updateOperator);
-            wrapUpOperation(operator);
-            return;
+            result = multiply(numA, numB);
+            showResults();
+            updateNumbers();
         }
         if (activeOperator == "/") {
-            currentNum = divide(lastNum, current, updateOperator);
-            wrapUpOperation(operator);
-            return;
+            result = divide(numA, numB);
+            showResults();
+            updateNumbers();
+        }
+
+        if (updateOperator) {
+            activeOperator = operator;
+        } else {
+            activeOperator = "";
         }
     }
 }
 
-function wrapUpOperation(operator, updateOperator) {
-    lastNum = null;
-    if (updateOperator == true) {
-        lastOperator = activeOperator;
-        activeOperator = operator;
-    } else {
-        activeOperator = "";
-    }
-    showFormula(currentNum, operator);
-    updateScreen();
+function updateNumbers() {
+    numA = result;
+    numB = null;
+    input = 0;
+    temp = "0";
 }
 
 function equals() {
@@ -169,7 +187,7 @@ for (let i = 0; i < 5; i++) {
     myHtml += `<div class="button-row">`;
     //fill with 4 buttons per row
     for (let j = 0; j < 4; j++) {
-        myHtml += `<div class="button" id="b${btn}" value="${numPad[btn]}">${numPad[btn]}</div>`;
+        myHtml += `<div class="button" id="b${btn}" data-value="${numPad[btn]}">${numPad[btn]}</div>`;
         btn++;
     }
     myHtml += `</div>`;
@@ -182,6 +200,30 @@ keys.innerHTML += myHtml;
 // interaction
 
 keys.addEventListener("click", (e) => {
-    console.log(e.target);
+    const value = e.target.getAttribute("data-value");
+
+    if (value == null) {}
+
+    else if (/[0-9.]/.test(value)) {
+        inputNumber(value);
+        showInput();
+    }
+    else if (/[-+/x]/.test(value)) {
+        operate(value);
+    }
+    else if (value == "=") {
+        operate(value, false);
+    }
+    else if (value == "AC") {
+        clear();
+    }
+    console.log({temp});
+    console.log(typeof temp);
+    console.log({input});
+    console.log({numA});
+    console.log({numB});
+    console.log({result});
+    console.log({activeOperator});
+
 });
 
