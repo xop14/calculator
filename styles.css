@@ -101,22 +101,40 @@ body {
     cursor: pointer;
     transition: 0.1s;
     color: #eeeeee;
+    user-select: none;
 }
 .button:hover {
-    border-top: 2px solid #333333;
-    border-bottom: 2px solid #999999;
+    transform: translateY(1px);
+    border-bottom: 3px solid #999999;
+    height: 99%;
     transition: 0.1s;
+}
+
+.button:active {
+    transform: translateY(4px);
+    border-bottom: 1px solid #999999;
+    transition: 0.1s;
+    height: 95%;
 }
 
 #b0 {
     background-color: #bc7630;
     border-bottom: 4px solid #ed952a;
+    height: 99%;
     transition: 0.1s;
 }
 
 #b0:hover {
-    border-top: 2px solid #333333;
-    border-bottom: 2px solid #ed952a;
+    transform: translateY(1px);
+    border-bottom: 3px solid #ed952a;
+    height: 99%;
+    transition: 0.1s;
+}
+
+#b0:active {
+    transform: translateY(4px);
+    border-bottom: 1px solid #ed952a;
+    height: 95%;
     transition: 0.1s;
 }
 
