@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #1f3038;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#container {
+    background-color: #333333;
+    height: 80%;
+    max-height: 600px;
+    min-height: 600px;
+    max-width: 400px;
+    padding: 20px;
+    align-items: flex-start;
+    flex: 0 0 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    align-items: stretch;
+    justify-content: stretch;
+    border-radius: 25px;
+    background: linear-gradient(#222222 0, #2a2a2a 40%);
+    border: 3px solid #333333;
+}
+
+#keys {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: stretch;
+    justify-content: stretch;
+    flex: 1;
+}
+
+.button-row {
+    flex: 1 0 auto;
+    width: 100%;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 15px;
+}
+
+#lcd {
+    background-color: #c8da9d;
+    min-height: 130px;
+    width: 50;
+    flex: 0;
+    border-radius: 10px;
+    color: #5f7031;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    justify-content:end;
+    padding-inline: 20px;
+    padding-bottom: 20px;
+    border-width: 4px 4px 4px 4px;
+    border-style: solid;
+    border-color: #a1af81;
+    margin-bottom: 20px;
+}
+
+#lcd-top {
+    font-size: 25px;
+
+}
+#lcd-bottom {
+    font-size: 50px;
+
+}
+
+.button {
+    background-color: #666666;
+    flex: 1 0 20%;
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    border-bottom: 4px solid #999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.1s;
+    color: #eeeeee;
+}
+.button:hover {
+    border-top: 2px solid #333333;
+    border-bottom: 2px solid #999999;
+    transition: 0.1s;
+}
+
+#b0 {
+    background-color: #bc7630;
+    border-bottom: 4px solid #ed952a;
+    transition: 0.1s;
+}
+
+#b0:hover {
+    border-top: 2px solid #333333;
+    border-bottom: 2px solid #ed952a;
+    transition: 0.1s;
+}
+
+#b16 {
+    flex: 1 0 46%;
+}
+
+#b17 {
+    flex-shrink: 1;
+    visibility: hidden;
+    width: 0px !important;
+    height: 0px !important;
+    position: fixed;
+}
