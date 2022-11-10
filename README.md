@@ -12,3 +12,9 @@ URL: https://xop14.github.io/calculator/
 * Adaptable font size for longer numbers
 * Dynamically created buttons with CSS animations
 * Mobile friendly
+
+
+## Future Additions
+
+* Keyboard support
+* Back button
