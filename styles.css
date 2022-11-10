@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    touch-action: manipulation;
 }
 
 h1 {
@@ -50,6 +51,7 @@ h1 {
     align-items: stretch;
     justify-content: stretch;
     flex: 1;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -91,6 +93,7 @@ h1 {
     height: 30px;
     margin-top: 18px;
     text-align: right;
+    margin-inline: 2px;
 
 }
 
@@ -116,7 +119,9 @@ h1 {
     cursor: pointer;
     transition: 0.1s;
     color: #eeeeee;
+    -webkit-user-select: none;
     user-select: none;
+
 }
 .button:hover {
     transform: translateY(1px);

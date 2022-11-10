@@ -105,7 +105,7 @@ function clear() {
 
 // logic
 function operate(operator) {
-    logAll("start");
+    //logAll("start");
     if (input == null) {
         activeOperator = operator;
     }
@@ -280,7 +280,7 @@ keys.addEventListener("click", (e) => {
         }
         if (toConvert < 0.001) {
             lcdBottom.style.fontSize = "28px";
-            lcdBottom.textContent = "Too small to convert";
+            lcdBottom.textContent = "Number too small";
             return;
         }
         input = toConvert / 100;
@@ -289,9 +289,19 @@ keys.addEventListener("click", (e) => {
         console.log({input});
     }
     else if (value == "±") {
-        input = input * -1;
-        temp = input.toString();
-        showInput();
+        logAll("± before");
+        let toConvert = input;
+        if (input == null) {
+            toConvert = numA;
+            numA = toConvert * -1;
+            result = numA;
+            showResults();
+        } else {
+            input = toConvert * -1;
+            temp = input.toString();
+            showInput();
+        }
+        logAll("± after");
     }
 
 });
