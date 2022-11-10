@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 100vh;
+    height: 90vh;
     background: #1f3038;
     color: #ffffff;
     padding: 20px;
@@ -13,6 +13,11 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #fff3;
 }
 
 #container {
@@ -45,6 +50,7 @@ body {
     align-items: stretch;
     justify-content: stretch;
     flex: 1;
+    user-select: none;
 }
 
 .button-row {
@@ -69,7 +75,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items:flex-end;
-    justify-content:end;
+    justify-content:flex-start;
     padding-inline: 20px;
     padding-bottom: 15px;
     border-width: 4px 4px 4px 4px;
@@ -80,11 +86,20 @@ body {
 }
 
 #lcd-top {
-    font-size: 25px;
+    font-size: 18px;
+    margin-bottom: 7px;
+    height: 30px;
+    margin-top: 18px;
+    text-align: right;
 
 }
+
 #lcd-bottom {
     font-size: 48px;
+    justify-self:baseline;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
 
 }
 
