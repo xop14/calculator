@@ -1,6 +1,8 @@
 # Calculator
 Simple web-based calculator written in JavaScript, CSS &amp; HTML
 
+URL: https://xop14.github.io/calculator/
+
 ## Features
 
 * Add, subtract, muliply & divide operators
