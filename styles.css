@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 90vh;
+    height: 100vh;
     background: #1f3038;
     color: #ffffff;
     padding: 20px;
@@ -38,7 +38,7 @@ h1 {
     align-items: stretch;
     justify-content: stretch;
     border-radius: 25px;
-    background: linear-gradient(#222222 0, #2a2a2a 40%);
+    background: linear-gradient(#1a1a1a 0, #222222 40%);
     border: 3px solid #333333;
 }
 
@@ -168,4 +168,21 @@ h1 {
     width: 0px !important;
     height: 0px !important;
     position: fixed;
+}
+
+#credits {
+    flex: 1;
+    max-width: 350px;
+    text-align: center;
+    margin-top: 20px;
+    color: #fff2;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+#credits a {
+    color: #fff4
+}
+#credits a:hover {
+    color: #fff8
 }
