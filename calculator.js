@@ -156,7 +156,7 @@ function operate(operator) {
         }
         activeOperator = operator;
     }
-    logAll("end");
+    //logAll("end");
 }
 
 function updateNumbers() {
@@ -273,7 +273,6 @@ keys.addEventListener("click", (e) => {
         operate(activeOperator, false);
     }
     else if (value == "%") {
-        logAll("%")
         let toConvert = input;
         if (input == null) {
             toConvert = result;
@@ -286,10 +285,8 @@ keys.addEventListener("click", (e) => {
         input = toConvert / 100;
         temp = input.toString();
         showInput();
-        console.log({input});
     }
     else if (value == "±") {
-        logAll("± before");
         let toConvert = input;
         if (input == null) {
             toConvert = numA;
@@ -301,7 +298,6 @@ keys.addEventListener("click", (e) => {
             temp = input.toString();
             showInput();
         }
-        logAll("± after");
     }
 
 });
